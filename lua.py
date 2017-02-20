@@ -34,8 +34,8 @@ def wvts(vname, vdata, nline=True, comma=True):
 "Naming scheme: Write [Variable/List] to [Wiki file/String]."
 
 def wvtw(f, vname, vdata, nline=True):
-	"Write a variable to the wiki file."
-	f.write(bytes(wvts(vname, vdata, nline), "UTF-8"))
+    "Write a variable to the wiki file."
+    f.write(bytes(wvts(vname, vdata, nline), "UTF-8"))
 
 def wlts(vname, lst, nline=True):
 	"Write a list to a string containing an equivalent Lua table."
@@ -53,8 +53,8 @@ def wlts(vname, lst, nline=True):
 	return wvts(vname, "{" + s + "},", nline, False)
 
 def wltw(f, vname, lst, nline=True):
-	"Write a list to the wiki file."
-	f.write(bytes(wlts(vname, lst, nline), "UTF-8"))
+    "Write a list to the wiki file."
+    f.write(bytes(wlts(vname, lst, nline), "UTF-8"))
 
 def english(f):
 	"Makes sure a file is in English."

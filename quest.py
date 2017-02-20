@@ -1,21 +1,23 @@
 from csv import reader
 from lua import *
+import sys
 import sparse
 import meta
-
-print("FFXIV Quest Database Generator")
-print("Written by Catuse167 of FFWiki - Ver 0.9\n")
 
 FILE = "exd/quest.exh_en.csv"
 QUESTFILE = "exd/quest"
 OUTPUT = "lua/quest.lua"
 
-TEST = True
+TEST = False
 DIALOGUE = True
 
 meta.report_metadata('quest')
 
 def print_quests():
+    if not TEST:
+        with open(OUTPUT, 'w') as f:
+            f.write('return {')
+    
     with open(FILE, 'r') as f:
         print("Reading from " + FILE + "...")
         csv_list = list(reader(f))
@@ -75,7 +77,7 @@ def print_quests():
             elif i < 48:
                 walkthrough.append(l + ",")
             elif DIALOGUE:
-                dialogue.append("{\"" + line[1].split("_")[3].lower().capitalize() + "\"," + l + "},")
+                dialogue.append("{\"" + line[1].split("_")[3].lower().capitalize().replace("00144","") + "\"," + l + "},")
         lst.append(wlts("journ", journal, False)) # Journal
         lst.append(wlts("walkthr", walkthrough, False)) # Walkthrough
         lst.append(wlts("dialogue", dialogue, False)) # Dialogue
@@ -86,6 +88,11 @@ def print_quests():
                 break
         else:
             with open(OUTPUT, 'ab') as f:
+                sys.stdout.write(".")
                 wltw(f, quest[1], lst)
+    
+    if not TEST:
+        with open(OUTPUT, 'a') as f:
+            f.write('}')
 
 print_quests()

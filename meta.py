@@ -1,8 +1,5 @@
 from lua import *
 
-print("FFXIV Metadata Generator")
-print("Written by Catuse167 of FFWiki - Ver 0.9\n")
-
 METADATA = "lua/meta.lua"
 PATCH = 3.51
 

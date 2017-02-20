@@ -3,9 +3,6 @@ from lua import *
 import sparse
 import meta
 
-print("FFXIV Links Generator")
-print("Written by Catuse167 of FFWiki - Ver 0.9\n")
-
 FILES = {"quests": ["exd/journalgenre.exh_en.csv", 3], "items": ["exd/itemuicategory.exh_en.csv", 1]}
 OUTPUT = "lua/links.lua"
 TEST = False
