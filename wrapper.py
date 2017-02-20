@@ -1,11 +1,11 @@
-import meta
-import links
-import quest
+from meta import *
+from links import print_links
+from quest import print_quests
 
 def execute():
-    meta.clean_metadata()
-    quest.print_quests()
-    links.print_links()
-    meta.finalize_metadata()
+    clean_metadata()
+    print_quests()
+    print_links()
+    finalize_metadata()
 
 execute()

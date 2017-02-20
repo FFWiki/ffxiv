@@ -11,9 +11,10 @@ OUTPUT = "lua/quest.lua"
 TEST = False
 DIALOGUE = True
 
-meta.report_metadata('quest')
 
 def print_quests():
+    meta.report_metadata('quest')
+    
     if not TEST:
         with open(OUTPUT, 'w') as f:
             f.write('return {')
@@ -94,5 +95,3 @@ def print_quests():
     if not TEST:
         with open(OUTPUT, 'a') as f:
             f.write('}')
-
-print_quests()

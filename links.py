@@ -7,9 +7,8 @@ FILES = {"quests": ["exd/journalgenre.exh_en.csv", 3], "items": ["exd/itemuicate
 OUTPUT = "lua/links.lua"
 TEST = False
 
-meta.report_metadata("links")
-
 def print_links():
+    meta.report_metadata("links")
     with open(OUTPUT, 'w') as f:
         f.write("return {")
         
@@ -35,5 +34,3 @@ def print_links():
 
     with open(OUTPUT, 'a') as f:
         f.write("}")
-
-print_links()
