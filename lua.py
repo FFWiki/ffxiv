@@ -2,6 +2,21 @@ def strip(s):
 	"Removes non-ASCII characters from a string."
 	return ''.join(c for c in str(s) if 0 < ord(c) < 127)
 
+def remove_commas(f):
+    "Remove double commas from a Lua file."
+    with open(f, 'r') as fr:
+        lines = fr.readlines()
+        o = ''
+        for line in lines:
+            o = o + line.replace(",,",",")
+
+    with open(f, 'w') as fw:
+        fw.write(o)
+
+def clean_file(f):
+    "Clean up a Lua file."
+    remove_commas(f)
+
 def wvts(vname, vdata, nline=True, comma=True):
 	"Write a variable to a string."	
 	if vdata == "":
@@ -15,6 +30,8 @@ def wvts(vname, vdata, nline=True, comma=True):
 	if comma:
 		return vname + "=" + vdata + ","
 	return vname + "=" + vdata
+
+"Naming scheme: Write [Variable/List] to [Wiki file/String]."
 
 def wvtw(f, vname, vdata, nline=True):
 	"Write a variable to the wiki file."

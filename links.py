@@ -12,22 +12,31 @@ TEST = False
 
 meta.report_metadata("links")
 
-for name, v in FILES.items():
-    exh = v[0]
-    loc = v[1]
-    with open(exh, 'r') as f:
-        print("Reading from " + exh + "...")
-        csv_list = list(reader(f))
+def print_links():
+    with open(OUTPUT, 'w') as f:
+        f.write("return {")
+        
+    for name, v in FILES.items():
+        exh = v[0]
+        loc = v[1]
+        with open(exh, 'r') as f:
+            print("Reading from " + exh + "...")
+            csv_list = list(reader(f))
 
-    lst = []
-    for genre in csv_list:
-        if "Index" in genre[0] or "0" in genre[0]:
-            continue
-        lst.append("        \"List of Final Fantasy XIV " + name + "/" + genre[loc] + "\"")
+        lst = []
+        for genre in csv_list:
+            if "Index" in genre[0] or "0" in genre[0]:
+                continue
+            lst.append("        \"List of Final Fantasy XIV " + name + "/" + genre[loc] + "\"")
+    
+        if TEST:
+            print(wlts(name, lst))
+        else:
+            with open(OUTPUT, 'ab') as f:
+                print("Writing to " + OUTPUT)
+                wltw(f, name, lst)
 
-    if TEST:
-        print(wlts(name, lst))
-    else:
-        with open(OUTPUT, 'ab') as f:
-            print("Writing to " + OUTPUT)
-            wltw(f, name, lst)
+    with open(OUTPUT, 'a') as f:
+        f.write("}")
+
+print_links()

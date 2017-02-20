@@ -10,3 +10,13 @@ def report_metadata(typ):
     with open(METADATA, 'ab') as f:
         print("Reporting metadata to  " + METADATA + "...")
         wvtw(f, typ + "Patch", PATCH)
+
+def clean_metadata():
+    with open(METADATA, 'w') as f:
+        print("Cleaning metadata file...")
+        f.write('')
+
+def finalize_metadata():
+    remove_commas(METADATA)
+    with open(METADATA, 'a') as f:
+        f.write('}')
