@@ -1,20 +1,20 @@
 import csv
 import sys
 import os
+import meta
 
 # Needs cleanup and modernization!
 
-print("FFXIV Item Database Generator")
-print("Written by Catuse167 of FFWiki - Ver. 1.2")
+FILE = "exd/item.exh_en.csv"
+ARMS = "lua/arms.lua"
+TOOLS = "lua/tools.lua"
+ARMOR = "lua/armor.lua"
+ACC = "lua/accessories.lua"
+MNM = "lua/medicinesandmeals.lua"
+MATS = "lua/materials.lua"
 
-file = raw_input("What is the name of the CSV file? ")
-
-with open('LuaData/meta.lua','ab') as f:
-    patch = raw_input("What patch of FFXIV is this? ")
-    print("Reporting metadata to LuaData/meta.lua...")
-    f.write("\titemPatch = " + patch + ",\n")
-    
-icons = ""
+def print_items():
+    meta.report_metadata('item')
 
 with open(file, 'rb') as csvfile:
     print("Reading from " + file + ".")
